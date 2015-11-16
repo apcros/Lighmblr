@@ -1,5 +1,3 @@
-
-		
 <?php
 	include "tumblr.class.php";
 	include "giflib.class.php";
@@ -36,7 +34,7 @@
 
 $f->dispFoot();
 
-
+//TODO move that somewhere
 function processPage($p = 0) {
 	$tumblr = new Tumblr($_SESSION["tumblr"],"fuiKNFp9vQFvjLNvx4sUwti4Yb5yGutBN4Xh10LXZhhRKjWlV4");
 	$giflib = new GifLib();
@@ -54,7 +52,5 @@ function processPage($p = 0) {
 
 	return $clean_array_compressed;
 }
-
-
 
 ?>
