@@ -39,6 +39,12 @@ ype="text/css" href="css/skeleton.css">
 			echo "<hr>";
 		}
 
+		if(isset($p)) {
+			showButton($p);
+		} else {
+			showButton();
+		}
+
 	} else {
 		echo "	<h3>Choose your tumblr !</h3>";
 		echo "	<form method='POST'>
@@ -73,19 +79,13 @@ function processPage($p = 0) {
 
 
 function showButton($p = NULL) {
-	if ($p == NULL || $p <= 1) {
-		echo '<a class="button button-primary" href="index.php?p=2">Next</a>';
+	if ($p == NULL || $p < 1) {
+		echo '<a class="button button-primary" href="index.php?p=1">Next</a>';
 	} else {
 		echo '
 		<a class="button button-primary" href="index.php?p='.($p-1).'">Previous</a>
 		<a class="button button-primary" href="index.php?p='.($p+1).'">Next</a>';
 	}
-}
-
-if(isset($p)) {
-	showButton($p);
-} else {
-	showButton();
 }
 
 ?>
