@@ -1,0 +1,10 @@
+.debug {
+	background-color: #F27935; 
+	border: 2px solid #D35400;
+	padding: 15 15 15 15;
+} 
+
+.info {
+	font-size: 15px;
+	color: #2574A9 !important;
+}
