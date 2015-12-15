@@ -1,6 +1,9 @@
 <html>
 <head>
+	<meta name="viewport" content="width=device-width">
+    <meta name="mobile-web-app-capable" content="yes">
 	<link rel="stylesheet" type="text/css" href="css/skeleton.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<title>Light Lesjoiesducode.fr</title>
 </head>
 
@@ -10,6 +13,7 @@
 		<hr>
 <?php
 
+
 if (isset($_GET["p"])) {
 	$p = htmlspecialchars($_GET["p"]);
 	$gifAndTitle = loadGifsAndTitle("http://lesjoiesducode.fr/","page/".$p);
@@ -17,6 +21,7 @@ if (isset($_GET["p"])) {
 	$p = NULL;
 	$gifAndTitle = loadGifsAndTitle("http://lesjoiesducode.fr/");
 }
+echo "<div class='info'>".showStats()."</div><hr>";
 
 foreach ($gifAndTitle as $key => $post) {
 	echo "<div class='row'>";
@@ -70,18 +75,32 @@ function compressGif($gifname) {
 function processLogs($logs, $started, $finished) {
 	if(count($logs) > 0) {
 		
-		echo "<b>Debug</b> Hello, I compressed ".count($logs)." gifs in ".($finished-$started)." seconds<br>";
-		echo "Here's the detail : <br>";
+		echo "<div class='debug'>".count($logs)." gifs compressed in <b>".($finished-$started)." seconds</b><br>";
 		foreach ($logs as $key => $value) {
 			if ($value == NULL) {
 				$value = "OK !";
 			}
-			echo ($key+1)." : ".$value."<br>";
+			echo "[<b>".($key+1)." - ".$value."</b>]<br>";
 		}
+		echo "</div><hr>";
 
 	}
 
 
+}
+
+function showStats() {
+	$all_files = scandir("gifs/");
+	$number_gifs = 0;
+	$total_size = 0;
+
+	foreach ($all_files as $key => $file) {
+		if(substr($file, -3) == "gif") {
+			$number_gifs++;
+			$total_size += filesize("gifs/".$file);
+		}
+	}
+	return $number_gifs." total gifs in cache. (".round($total_size/1024/1024)." MB)";
 }
 
 function showButton($p = NULL) {
