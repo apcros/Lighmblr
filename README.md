@@ -3,7 +3,7 @@
 ## Introduction
 This code came from a simple constatation : Browsing a "reaction tumblr" (Like lesjoiesducode.fr ) from a smartphone / 3G is close to impossible because of how heavy theses gifs can be. 
 
-Currently this only support lesjoiesducode.fr as the gifs/title detection has been hardcoded, but I'm planning to change that in the futur. 
+This should support all the tumblrs with gifs in post (as it's now  using the Tumblr API)
 
 ## Process
 The process is fairly simple : 
@@ -15,7 +15,7 @@ When you access a page where none of the gifs are cache, it can take up to a min
 
 ## Libraries : 
 
-- Simple HTML DOM - http://simplehtmldom.sourceforge.net : For the DOM manipulation to retrieve gifs and title
+- Tumbler API - https://www.tumblr.com/docs/en/api/v2 
 
 - Skeleton - http://getskeleton.com/ : A light CSS framework. (To have something \*a bit\* responsive)
 
