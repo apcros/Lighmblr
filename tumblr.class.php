@@ -10,12 +10,15 @@ class Tumblr
 		
 	function __construct($url,$api_key)
 	{
-		$this->url = $url;
+		$this->setTumblr($url);
 		$this->api_key = $api_key;
 
 	}
 
-
+	function setTumblr($tumblr) {
+		$cleaned_name = str_replace("http://", "", $tumblr);
+		$this->url = $cleaned_name;
+	}
 	function load($page = 0,$postsPerPage = 4) {
 
 		$tumblr_json = json_decode(file_get_contents("https://api.tumblr.com/v2/blog/".$this->url."/posts?api_key=".$this->api_key."&limit=".$postsPerPage."&offset=".($page*$postsPerPage)));

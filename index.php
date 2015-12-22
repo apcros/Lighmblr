@@ -4,11 +4,19 @@
 	include "front.class.php";
 
 	$f = new Front();
-
 	$f->dispHead();
+
 	session_start();
-	if(isset($_POST["tumblr"])) {$_SESSION["tumblr"] = htmlspecialchars($_POST["tumblr"]);}
-	if(isset($_GET["exit"])) {unset($_SESSION["tumblr"]); header("location: index.php");}
+	
+	if(isset($_POST["tumblr"])) {
+		$_SESSION["tumblr"] = htmlspecialchars($_POST["tumblr"]);
+	}
+
+	if(isset($_GET["exit"])) {
+		unset($_SESSION["tumblr"]); 
+		header("location: index.php");
+	}
+
 	if(isset($_SESSION["tumblr"])) {
 
 		$f->dispTumblrHead($_SESSION["tumblr"]);
@@ -32,9 +40,8 @@
 		$f->dispTumblrForm();
 	}
 
-$f->dispFoot();
+	$f->dispFoot();
 
-//TODO move that somewhere
 function processPage($p = 0) {
 	$tumblr = new Tumblr($_SESSION["tumblr"],"fuiKNFp9vQFvjLNvx4sUwti4Yb5yGutBN4Xh10LXZhhRKjWlV4");
 	$giflib = new GifLib();

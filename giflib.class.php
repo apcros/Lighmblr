@@ -28,6 +28,24 @@ class GifLib
 		$gif_url_exploded = explode("/", $giflink);
 		return $gif_url_exploded[count($gif_url_exploded)-1];
 	}
+
+	function nbAndSize() {
+		$all_files = scandir("gifs/");
+		$nbAndSize = array();
+		$nbAndSize["nb"] = 0;
+		$nbAndSize["size"] = 0;
+ 
+	 	foreach ($all_files as $key => $file) {
+
+	 		if(substr($file, -3) == "gif") {
+	 			$nbAndSize["nb"]++;
+	 			$nbAndSize["size"] += filesize("gifs/".$file);
+	 		}
+	 	}
+	 		return $nbAndSize;
+
+	}
+	
 }
 
 ?>
