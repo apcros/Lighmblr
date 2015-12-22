@@ -66,7 +66,7 @@ class Front
 
 	function dispLoginError() {
 		//TODO
-		echo "Nope";
+		echo "Nope"
 	}
 	function dispHead() {
 		echo '
