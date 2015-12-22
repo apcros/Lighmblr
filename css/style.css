@@ -8,3 +8,13 @@
 	font-size: 15px;
 	color: #2574A9 !important;
 }
+
+.main-top {
+	color: black;
+
+}
+
+.button-danger {
+	background-color: #e74c3c;
+	color: white;
+}

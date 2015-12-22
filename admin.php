@@ -25,6 +25,10 @@ if(isset($_POST["username"]) && isset($_POST["password"])) {
 
 if(isset($_SESSION["login"])) {
 
+	if(isset($_GET["clear"])) {
+		$g->clearCache();
+	}
+
 	$f->dispAdminPage($g->nbAndSize());
 
 } else {

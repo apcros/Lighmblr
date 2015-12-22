@@ -40,8 +40,8 @@ class Front
 	function dispLoginForm() {
 		echo "	<h3>Login</h3>";
 		echo "	<form method='POST'>
-					Username : <input type='text' name='username'/>
-					Password : <input type='password' name='password' />
+					<p>Username : <input type='text' name='username'/></p>
+					<p>Password : <input type='password' name='password' /></p>
 					<button class='button button-primary'>Login</button>
 				</form>";
 	}
@@ -59,14 +59,18 @@ class Front
 				      <td>'.$nbAndSize["nb"].'</td>
 				      <td>'.round($nbAndSize["size"]/1024/1024).'</td>
 				    </tr>
+				    <tr>
+				    	<td><a class="button button-danger" href="admin.php?clear=1">Clear cache</a></td>
+				    	<td></td>
+				    </tr>
 				  </tbody>
 				</table>
 				<a class="button button-primary" href="admin.php?exit=1">Logout</a>';
 	}
 
 	function dispLoginError() {
-		//TODO
-		echo "Nope"
+
+		echo "<b style='color: red;'>Wrong username and/or password </b>";
 	}
 	function dispHead() {
 		echo '
@@ -79,7 +83,7 @@ class Front
 				<title>Lighmblr !</title>
 			</head>
 			<body>
-				<div class="container"><a href="index.php"><h1>Lighmblr</h1></a>';
+				<div class="container"><a href="index.php"><h1 class="main-top">Lighmblr</h1></a>';
 	}
 
 	function dispFoot() {

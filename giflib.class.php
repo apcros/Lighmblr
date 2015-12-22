@@ -37,7 +37,7 @@ class GifLib
  
 	 	foreach ($all_files as $key => $file) {
 
-	 		if(substr($file, -3) == "gif") {
+	 		if(substr($file, -3) == "gif" && $file != "compressed_blank.gif") {
 	 			$nbAndSize["nb"]++;
 	 			$nbAndSize["size"] += filesize("gifs/".$file);
 	 		}
@@ -45,7 +45,17 @@ class GifLib
 	 		return $nbAndSize;
 
 	}
-	
+
+	function clearCache() {
+		$all_files = scandir("gifs/");
+		foreach ($all_files as $key => $file) {
+
+	 		if(substr($file, -3) == "gif" && $file != "compressed_blank.gif") {
+	 			unlink("gifs/".$file);
+	 		}
+	 	}
+	}
+
 }
 
 ?>
