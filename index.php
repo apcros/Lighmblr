@@ -7,6 +7,7 @@
 	$f->dispHead();
 
 	session_start();
+
 	
 	if(isset($_POST["tumblr"])) {
 		$_SESSION["tumblr"] = htmlspecialchars($_POST["tumblr"]);

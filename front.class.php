@@ -10,44 +10,58 @@ class Front
 
 	function dispPosts($posts) {
 
+
 		foreach ($posts as $key => $post) {
-			echo "	<div class='row'>
-						<div class='twelve columns'>
-							<h5>".$post["title"]."</h5>
-							<img src='".$post["gif"]."'/>
-						</div>
-					</div>
-					<hr>";
+
+			echo '	<div class="row center-align">
+				        <div class="col s12 offset-m3 m6">
+				          <div class="card">
+				            <div class="card-image">
+				              <img src="'.$post["gif"].'"/>
+				            </div>
+				            <div class="card-content">
+				            <b>'.$post["title"].'</b>
+				            </div>
+				          </div>
+				        </div>
+				      </div>';
 		}
 
 	}
 
 	function dispTumblrHead($name) {
-	echo '<a style="text-decoration: none; color: black;"href="index.php"><h3>'.$name.'</h3></a>
-		<a class="button button-primary" href="index.php?exit=1">New tumblr ?</a>
-		<a class="button button-primary" href="admin.php">Admin</a>
-		<hr>';
+	echo '<h5>'.$name.'</h5>
+		<a class="waves-effect waves-light btn blue darken-3" href="index.php?exit=1"><i class="material-icons left">swap_vertical_circle</i>New tumblr ?</a>
+		<a class="waves-effect waves-light btn deep-purple darken-3" href="admin.php"><i class="material-icons left">settings</i>Admin</a>
+		<br>';
 	}
 	function dispTumblrForm() {
 		echo "	<h3>Choose your tumblr !</h3>";
 		echo "	<form method='POST'>
-					<input type='text' name='tumblr'/>
-					<button class='button button-primary'>OK !</button>
-					<a class='button button-primary' href='admin.php'>Admin</a>
+					        <div class='input-field col s6'>
+					          <i class='material-icons prefix'>language</i>
+					          <input id='icon_prefix' name='tumblr' type='text' class='validate'>
+					          <label for='icon_prefix'>Tumblr Domain</label>
+					        </div>
+					<button class='waves-effect waves-light btn blue darken-3'><i class='material-icons left'>cached</i>Save & Load</button>
+					<a class='waves-effect waves-light btn deep-purple darken-3' href='admin.php'><i class='material-icons left'>settings</i>Admin</a>
 				</form>";
 	}
 
 	function dispLoginForm() {
-		echo "	<h3>Login</h3>";
 		echo "	<form method='POST'>
-					<p>Username : <input type='text' name='username'/></p>
-					<p>Password : <input type='password' name='password' /></p>
-					<button class='button button-primary'>Login</button>
+					<p><b>Username : </b><input type='text' name='username'/></p>
+					<p><b>Password : </b><input type='password' name='password' /></p>
+					<button class='waves-effect waves-light btn blue darken-3'><i class='material-icons left'>lock</i>Login</button>
 				</form>";
 	}
 
 	function dispAdminPage($nbAndSize) {
-		echo '<table class="u-full-width">
+		echo '
+ <div class="row">
+      <div class="col s12">
+        <div class="card-panel">
+			<table class="u-full-width">
 				  <thead>
 				    <tr>
 				      <th>Number of cached gifs</th>
@@ -60,30 +74,45 @@ class Front
 				      <td>'.round($nbAndSize["size"]/1024/1024).'</td>
 				    </tr>
 				    <tr>
-				    	<td><a class="button button-danger" href="admin.php?clear=1">Clear cache</a></td>
+				    	<td><a class="waves-effect waves-light btn red darken-3" href="admin.php?clear=1"><i class="material-icons left">clear</i>Clear cache</a></td>
 				    	<td></td>
 				    </tr>
 				  </tbody>
 				</table>
-				<a class="button button-primary" href="admin.php?exit=1">Logout</a>';
+        </div>
+      </div>
+    </div>
+				<a class="waves-effect waves-light btn orange darken-3" href="admin.php?exit=1"><i class="material-icons left">exit_to_app</i>Logout</a>';
 	}
 
 	function dispLoginError() {
-
-		echo "<b style='color: red;'>Wrong username and/or password </b>";
+		echo ' <div class="row">
+			      <div class="col s12">
+			        <div class="card-panel red darken-3">
+			        	<span class="white-text">Wrong username and/or password </span>
+			        </div>
+			       </div>
+			    </div>';
 	}
 	function dispHead() {
 		echo '
-			<html>
-			<head>
-				<meta name="viewport" content="width=device-width">
-			    <meta name="mobile-web-app-capable" content="yes">
-				<link rel="stylesheet" type="text/css" href="css/skeleton.css">
-				<link rel="stylesheet" type="text/css" href="css/style.css">
-				<title>Lighmblr !</title>
-			</head>
-			<body>
-				<div class="container"><a href="index.php"><h1 class="main-top">Lighmblr</h1></a>';
+			  <!DOCTYPE html>
+			  <html>
+			    <head>
+			      <!--Import Google Icon Font-->
+			      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+			      <!--Import materialize.css-->
+			      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+			      <!--Let browser know website is optimized for mobile-->
+			      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+			    </head>
+
+			    <body>
+			      <!--Import jQuery before materialize.js-->
+			      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+			      <script type="text/javascript" src="js/materialize.min.js"></script>
+				<div class="container center-align"><a href="index.php"><h2 style="text-decoration: none; color: black;" class="main-top">Lighmblr</h2></a>';
 	}
 
 	function dispFoot() {
@@ -96,13 +125,20 @@ class Front
 
 	function dispBtnPagination($p = NULL) {
 		if ($p == NULL || $p < 1) {
-			echo '<a class="button button-primary" href="index.php?p=1">Next</a>';
+			echo '
+			  <ul class="pagination">
+			    <li class="disabled"><a href="#"><i class="material-icons">chevron_left</i></a></li>
+			    <li class="waves-effect"><a href="index.php?p=1"><i class="material-icons">chevron_right</i></a></li>
+			  </ul>
+			';
 		} else {
 			echo '
-			<a class="button button-primary" href="index.php?p='.($p-1).'">Previous</a>
-			<a class="button button-primary" href="index.php?p='.($p+1).'">Next</a>';
+			  <ul class="pagination">
+			    <li class="waves-effect"><a href="index.php?p='.($p-1).'"><i class="material-icons">chevron_left</i></a></li>
+			    <li class="waves-effect"><a href="index.php?p='.($p+1).'"><i class="material-icons">chevron_right</i></a></li>
+			  </ul>
+			';
 		}
 	}
 }
-
 ?>
