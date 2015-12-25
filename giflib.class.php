@@ -3,12 +3,14 @@
 /**
 * 
 */
+include "settings.class.php";
 class GifLib
 {
+	private $settings;
 
 	function __construct()
 	{
-
+		$this->settings = new Settings("gisicle.json");
 	}
 
 	function isGifCached($giflink) {
@@ -19,7 +21,19 @@ class GifLib
 	function compressGif($giflink) {
 		$gifname = $this->gifOrgName($giflink);
 		file_put_contents("gifs/".$gifname, file_get_contents($giflink));
-		$output = shell_exec("gifs/gifsicle-debian6 -O3 --colors 64 --lossy=350 gifs/".$gifname." -o gifs/compressed_".$gifname." 2>&1");
+		if($this->settings->get("colors")) {
+			$colors = $this->settings->get("colors");
+		} else {
+			$colors = 64;
+		}
+
+		if($this->settings->get("compression_rate")) {
+			$compression_rate = $this->settings->get("compression_rate");
+		} else {
+			$compression_rate = 350;
+		}
+
+		$output = shell_exec("gifs/gifsicle-debian6 -O3 --colors ".$colors." --lossy=".$compression_rate." gifs/".$gifname." -o gifs/compressed_".$gifname." 2>&1");
 		unlink("gifs/".$gifname);
 	}
 
