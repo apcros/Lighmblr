@@ -17,6 +17,6 @@ When you access a page where none of the gifs are cache, it can take up to a min
 
 - Tumbler API - https://www.tumblr.com/docs/en/api/v2 
 
-- Skeleton - http://getskeleton.com/ : A light CSS framework. (To have something \*a bit\* responsive)
+- MaterializeCss - http://materializecss.com/ : A CSS Framework following the Material Design guidelines. (To have something \*a bit\* responsive and not too ugly.)
 
 - Gifsicle/Giflossy - https://github.com/pornel/giflossy : The actual gif compressor, called from a shell_exec. (Not exactly idea, I know, but PHP GD was miles away from the result of gifsicle.)
