@@ -2,7 +2,7 @@
 
 class Front
 {
-	
+
 	function __construct()
 	{
 	}
@@ -112,7 +112,12 @@ class Front
 			      <!--Import jQuery before materialize.js-->
 			      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 			      <script type="text/javascript" src="js/materialize.min.js"></script>
-				<div class="container center-align"><a href="index.php"><h2 style="text-decoration: none; color: black;" class="main-top">Lighmblr</h2></a>';
+						<nav>
+							<div class="nav-wrapper blue darken-3">
+								<a href="index.php" class="brand-logo center">Lighmblr</a>
+							</div>
+						</nav>
+				<div class="container center-align">';
 	}
 
 	function dispFoot() {
