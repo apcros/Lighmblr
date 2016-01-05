@@ -17,7 +17,7 @@ class Front
 				        <div class="col s12 offset-m3 m6">
 				          <div class="card">
 				            <div class="card-image">
-				              <img src="'.$post["gif"].'"/>
+				              <img class="reaction-gif" id="'.$post["id"].'" src="'.$post["gif"].'"/>
 				            </div>
 				            <div class="card-content">
 				            <b>'.$post["title"].'</b>
@@ -112,6 +112,7 @@ class Front
 			      <!--Import jQuery before materialize.js-->
 			      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 			      <script type="text/javascript" src="js/materialize.min.js"></script>
+			      <script type="text/javascript" src="js/lighmblr.js"></script>
 						<nav>
 							<div class="nav-wrapper blue darken-3">
 								<a href="index.php" class="brand-logo center">Lighmblr</a>
