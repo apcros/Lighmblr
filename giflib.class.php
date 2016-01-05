@@ -47,6 +47,7 @@ class GifLib
 
 	function gifOrgName($giflink) {
 		$gif_url_exploded = explode("/", $giflink);
+		
 		return $gif_url_exploded[count($gif_url_exploded)-1];
 	}
 

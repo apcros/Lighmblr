@@ -58,7 +58,7 @@ function processPage($p = 0) {
 				$giflib->compressGif($post["gif"]);
 			}
 			$clean_array_compressed[count($clean_array_compressed)-1]["gif"] = "static/preloader.gif";
-			#TODO auto refresh via js
+			#TODO auto refresh via javascript
 		} else {
 			$clean_array_compressed[count($clean_array_compressed)-1]["gif"] = "gifs/compressed_".$giflib->gifOrgName($post["gif"]);
 		}
