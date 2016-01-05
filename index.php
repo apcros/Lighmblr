@@ -51,11 +51,19 @@ function processPage($p = 0) {
 	$clean_array_compressed = array();
 
 	foreach ($clean_array as $key => $post) {
-		if(!$giflib->isGifCached($post["gif"])) {
-			$giflib->compressGif($post["gif"]);
-		}
 		$clean_array_compressed[]["title"] = $post["title"];
-		$clean_array_compressed[count($clean_array_compressed)-1]["gif"] = "gifs/compressed_".$giflib->gifOrgName($post["gif"]);
+
+		if(!$giflib->isGifCached($post["gif"])) {
+			if(!$giflib->isCompressionRunning($post["gif"])) {
+				$giflib->compressGif($post["gif"]);
+			}
+			$clean_array_compressed[count($clean_array_compressed)-1]["gif"] = "static/preloader.gif";
+			#TODO auto refresh via js
+		} else {
+			$clean_array_compressed[count($clean_array_compressed)-1]["gif"] = "gifs/compressed_".$giflib->gifOrgName($post["gif"]);
+		}
+
+		
 	}
 
 	return $clean_array_compressed;

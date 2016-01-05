@@ -20,7 +20,6 @@ class GifLib
 
 	function compressGif($giflink) {
 		$gifname = $this->gifOrgName($giflink);
-		file_put_contents("gifs/".$gifname, file_get_contents($giflink));
 		if($this->settings->get("colors")) {
 			$colors = $this->settings->get("colors");
 		} else {
@@ -33,10 +32,18 @@ class GifLib
 			$compression_rate = 350;
 		}
 
-		$output = shell_exec("gifs/gifsicle-debian6 -O3 --colors ".$colors." --lossy=".$compression_rate." gifs/".$gifname." -o gifs/compressed_".$gifname." 2>&1");
-		unlink("gifs/".$gifname);
+		$output = shell_exec("screen -dmS compression-".substr($gifname, 0, -4)." scripts/launchCompression.sh ".$colors." ".$compression_rate." ".$gifname." ".$giflink." 2>&1");
 	}
 
+	function isCompressionRunning($giflink) {
+		$gifname = $this->gifOrgName($giflink);
+		$output = shell_exec("screen -ls | grep compression-".substr($gifname, 0, -4));
+		if($output != "") {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 	function gifOrgName($giflink) {
 		$gif_url_exploded = explode("/", $giflink);
