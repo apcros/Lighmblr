@@ -1,3 +1,0 @@
-gifsicle-debian6: ‘--colors’ expects an integer, not ‘--lossy=’
-Usage: gifsicle-debian6 [OPTION | FILE | FRAME]...
-Try 'gifsicle-debian6 --help' for more information.
