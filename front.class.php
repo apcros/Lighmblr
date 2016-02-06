@@ -56,33 +56,48 @@ class Front
 				</form>";
 	}
 
-	function dispAdminPage($nbAndSize) {
-		echo '
- <div class="row">
-      <div class="col s12">
+	function dispSystemCache($nbAndSize) {
+		echo '<div class="col s12">
+	        <div class="card-panel">
+				<table class="u-full-width">
+					  <thead>
+					    <tr>
+					      <th>Number of cached gifs</th>
+					      <th>Total size (Mb)</th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					    <tr>
+					      <td>'.$nbAndSize["nb"].'</td>
+					      <td>'.round($nbAndSize["size"]/1024/1024).'</td>
+					    </tr>
+					    <tr>
+					    	<td><a class="waves-effect waves-light btn red darken-3" href="admin.php?clear=1"><i class="material-icons left">clear</i>Clear cache</a></td>
+					    	<td></td>
+					    </tr>
+					  </tbody>
+					</table>
+			        </div>
+			      </div>';
+	}
+	function dispGifiscleSettings($settings) {
+		echo ' <div class="col s12">
         <div class="card-panel">
-			<table class="u-full-width">
-				  <thead>
-				    <tr>
-				      <th>Number of cached gifs</th>
-				      <th>Total size (Mb)</th>
-				    </tr>
-				  </thead>
-				  <tbody>
-				    <tr>
-				      <td>'.$nbAndSize["nb"].'</td>
-				      <td>'.round($nbAndSize["size"]/1024/1024).'</td>
-				    </tr>
-				    <tr>
-				    	<td><a class="waves-effect waves-light btn red darken-3" href="admin.php?clear=1"><i class="material-icons left">clear</i>Clear cache</a></td>
-				    	<td></td>
-				    </tr>
-				  </tbody>
-				</table>
-        </div>
-      </div>
-    </div>
-				<a class="waves-effect waves-light btn orange darken-3" href="admin.php?exit=1"><i class="material-icons left">exit_to_app</i>Logout</a>';
+			<form method="POST" action="admin.php">';
+			echo "<input type='hidden' name='gifsicle_settings' value='0' />";
+		foreach ($settings as $key => $value) {
+			echo "<b>".ucwords(str_replace("_", " ", $key)).'</b><input type="number" name="'.$key.'" value="'.$value.'"/>';
+		}
+		echo '<button class="btn waves-effect waves-light" type="submit" name="action">Save settings
+			    <i class="material-icons right">send</i>
+			  </button>';
+	}
+
+	function dispAdminPage($nbAndSize,$settings) {
+		echo '<div class="row">';
+		$this->dispSystemCache($nbAndSize);
+		$this->dispGifiscleSettings($settings);
+  		echo '</div><a class="waves-effect waves-light btn orange darken-3" href="admin.php?exit=1"><i class="material-icons left">exit_to_app</i>Logout</a>';
 	}
 
 	function dispLoginError() {

@@ -31,7 +31,6 @@ class GifLib
 		} else {
 			$compression_rate = 350;
 		}
-
 		$output = shell_exec("screen -dmS compression-".substr($gifname, 0, -4)." scripts/launchCompression.sh ".$colors." ".$compression_rate." ".$gifname." ".$giflink." 2>&1");
 	}
 
